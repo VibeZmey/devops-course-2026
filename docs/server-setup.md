@@ -165,3 +165,17 @@ sudo ufw status numbered
 | `01-clean-install` | После установки Ubuntu Server, обновления системы и проверки сети, до выполнения аудиторной части |
 | `02-keys-configured` | После создания учётной записи `devops`, настройки ключевой аутентификации и файла `~/.ssh/config` на хостовой системе |
 | `03-ssh-hardened` | После усиления защиты SSH, проверки нового подключения и подтверждения работы службы на порту `2222` |
+
+## 8. Веб-сервер
+
+| Параметр | Значение |
+|---|---|
+| Устанавливаемый пакет | `nginx` (версия 1.24.0) |
+| Путь к конфигурации ресурса | `/etc/nginx/sites-available/devops-site` |
+| Каталог ресурса | `/var/www/devops-site` |
+| Владелец каталога ресурса | `devops:devops` |
+| Права каталога и файлов | `755` для каталогов, `644` для файлов |
+| Путь к сертификату | `/etc/ssl/certs/devops.crt` (права `644`, владелец `root`) |
+| Путь к закрытому ключу | `/etc/ssl/private/devops.key` (права `600`, владелец `root`) |
+| Команда формирования сертификата | `sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/devops.key -out /etc/ssl/certs/devops.crt -subj "/CN=devops.local" -addext "subjectAltName=DNS:devops.local"` |
+| Срок действия сертификата | 365 дней (1 год) |
