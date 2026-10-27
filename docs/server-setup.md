@@ -179,3 +179,16 @@ sudo ufw status numbered
 | Путь к закрытому ключу | `/etc/ssl/private/devops.key` (права `600`, владелец `root`) |
 | Команда формирования сертификата | `sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/devops.key -out /etc/ssl/certs/devops.crt -subj "/CN=devops.local" -addext "subjectAltName=DNS:devops.local"` |
 | Срок действия сертификата | 365 дней (1 год) |
+
+## 9. Контейнеризация
+
+| Параметр | Значение |
+|---|---|
+| Способ установки Docker | Официальный репозиторий Docker |
+| Версия Docker Engine | 27.x (проверьте `docker --version`) |
+| Участники группы docker | `devops` |
+| Расположение проекта | `~/app` |
+| Расположение файла .env | `~/app/.env` (права `600`, владелец `devops`) |
+| Публикуемые порты и адреса | `127.0.0.1:5000` (приложение), порт `5432` не публикуется |
+| Именованные тома | `app_db_data` |
+| Конфигурация прокси | `location /app/` в `/etc/nginx/sites-available/devops-site` |
