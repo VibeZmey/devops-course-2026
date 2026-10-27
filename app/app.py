@@ -28,7 +28,7 @@ def index():
             cur.execute("INSERT INTO visits DEFAULT VALUES")
             cur.execute("SELECT COUNT(*) FROM visits")
             count = cur.fetchone()[0]
-        return f"<h1>Hello from Docker, Змеев!</h1><p>Visits: {count}</p>\n"
+        return f"<h1>Hello from Docker v2, Змеев!</h1><p>Visits: {count}</p>\n"
     finally:
         conn.close()
 
